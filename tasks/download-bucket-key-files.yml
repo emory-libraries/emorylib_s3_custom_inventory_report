@@ -22,6 +22,11 @@
   loop: '{{ bucket_inventory_json.files }}'
   register: test_info
 
-- debug:
-    var: test_info
+- name: Set fact for download .csv.gz list
+  set_fact:
+    '{{ bucket_type }}_gz_list': '{{ default_list + location }}'
+  vars:
+    default_list: []
+    location: '{{ download_location }}/{{ item.key | basename }}'
+  loop: '{{ bucket_inventory_json.files }}'
     

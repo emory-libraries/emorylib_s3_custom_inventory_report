@@ -7,4 +7,4 @@
 
 - name: Add read csv info to list
   set_fact:
-    '{{ bucket_type }}_csv': '{{ lookup("vars", bucket_type + "_csv", default=[]) + [read_csv_info.list] }}'
+    '{{ bucket_type }}_csv': '{{ lookup("vars", bucket_type + "_csv", default=[]) + read_csv_info.list }}'

@@ -41,4 +41,18 @@
   assert:
     that: 
       - item.0.MD5checksum | lower == item.1.stat.checksum | lower
+    quiet: yes
+    fail_msg: The MD5 checksum of the downloaded file(s) do not match the value in the json file
   loop: '{{ bucket_inventory_json.files | zip(md5_info.results) | list }}'
+
+- name: Unzip the downloaded .csv.gz files
+  unarchive:
+    src: '{{ item }}'
+    remote_src: yes
+    list_files: yes
+  loop: '{{ bucket_gz_list }}'
+  register: '{{ bucket_type }}_unzip_list'
+
+- debug:
+    var: bucket_unzip_list
+    

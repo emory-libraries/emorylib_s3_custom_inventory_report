@@ -23,7 +23,7 @@
   when: s3.date | lower == "latest"
 
 - name: Get bucket key json file
-  shell: <
+  shell: >
     aws s3 cp {{ s3.bucket }}/{{ s3.key_prefix | d () | regex_replace(get_trailing_slash, '') }}{{ key_prefix_ternary }}{{ bucket_key }}/{{ report_prefix }}.json
     {{ download_location }}/{{ bucket_type }}.json
   vars:

@@ -51,10 +51,8 @@
     remote_src: yes
     list_files: yes
   loop: '{{ bucket_gz_list }}'
-  vars:
-    temp_name: '{{ bucket_type }}_unzip_list'
-  register: '{{ lookup("vars", temp_name) }}'
+  register: unzip_info
 
 - debug:
-    var: bucket_unzip_list
+    var: unzip_info
 

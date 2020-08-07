@@ -29,4 +29,13 @@
     default_list: []
     location: '{{ download_location }}/{{ item.key | basename }}'
   loop: '{{ bucket_inventory_json.files }}'
+
+- name: Stat on .csv.gz list for md5 check
+  stat:
+    path: '{{ item }}'
+  loop: '{{ bucket_gz_list }}'
+  register: md5_info
+
+- debug:
+    var: md5_info
     

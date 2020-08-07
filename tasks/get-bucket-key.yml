@@ -37,4 +37,9 @@
   set_fact:
     '{{ bucket_type }}_inventory_json': '{{ lookup ("file", download) | from_json }}'
   vars:
+    download_location: '{{ s3_custom_report_download_location }}'
     download: '{{ download_location }}/{{ bucket_type }}.json'
+  
+- debug:
+    msg: '{{ lookup("vars", bucket_type + "_inventory_json")}}'
+  

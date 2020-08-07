@@ -46,10 +46,5 @@
   loop: '{{ bucket_inventory_json.files | zip(md5_info.results) | list }}'
 
 - name: Unzip the downloaded .csv.gz files
-  shell: gunzip {{ item }}
+  shell: gunzip -f {{ item }}
   loop: '{{ bucket_gz_list }}'
-  register: unzip_info
-
-
-- debug:
-    var: bucket_gz_list | regex_replace(".csv.gz", ".csv")

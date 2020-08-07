@@ -33,9 +33,12 @@
 - name: Stat on .csv.gz list for md5 check
   stat:
     path: '{{ item }}'
+    checksum_algorithm: md5
   loop: '{{ bucket_gz_list }}'
   register: md5_info
 
-- debug:
-    var: md5_info
-    
+- name: Assert that local checksum matches given value in json file
+  assert:
+    that: 
+      - item.0.MD5checksum == item.1.stat.checksum'
+  loop: '{{ bucket_inventory_json.files | zip(md5_info.results) | list }}'

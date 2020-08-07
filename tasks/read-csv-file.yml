@@ -1,7 +1,7 @@
 ---
 - name: Read {{ bucket_type }} CSV file
   read_csv:
-    path: ' {{ csv_path }}'
+    path: '{{ csv_path }}'
     fieldnames: '{{ source_inventory_json.fileSchema | trim }}'
   register: read_csv_info
 

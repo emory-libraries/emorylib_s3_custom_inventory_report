@@ -24,7 +24,7 @@
 
 - name: Set fact for download .csv.gz list
   set_fact:
-    '{{ bucket_type }}_gz_list': '{{ lookup("vars", bucket_type + "_gz_list") | d ([]) + [location] }}'
+    '{{ bucket_type }}_gz_list': '{{ lookup("vars", bucket_type + "_gz_list", default=[]) + [location] }}'
   vars:
     default_list: []
     location: '{{ download_location }}/{{ item.key | basename }}'

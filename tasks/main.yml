@@ -2,7 +2,7 @@
 # tasks file for emorylib_s3_custom_inventory_report
 
 - name: Include tasks to get source bucket key
-  include_task:
+  include_tasks:
     file: get-bucket-key.yml
   vars:
     bucket_type: source

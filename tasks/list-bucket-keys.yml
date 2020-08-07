@@ -15,3 +15,9 @@
     file: get-bucket-key.yml
   vars:
     bucket_keys: '{{ lookup ("vars", bucket_type + "_bucket_keys") }}'
+  
+- name: Include tasks to download bucket key files
+  include_tasks:
+    file: download-bucket-key-files.yml
+  vars:
+    bucket_key: '{{ lookup ("vars", bucket_type + "_bucket_key") }}' 

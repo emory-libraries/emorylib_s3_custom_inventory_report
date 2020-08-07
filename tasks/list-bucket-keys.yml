@@ -20,4 +20,4 @@
   include_tasks:
     file: download-bucket-key-files.yml
   vars:
-    bucket_key: '{{ lookup ("vars", bucket_type + "_bucket_key") }}' 
+    bucket_inventory_json: '{{ lookup("vars", bucket_type + "_inventory_json") }}'

@@ -40,5 +40,5 @@
 - name: Assert that local checksum matches given value in json file
   assert:
     that: 
-      - item.0.MD5checksum == item.1.stat.checksum'
+      - item.0.MD5checksum == item.1.stat.checksum
   loop: '{{ bucket_inventory_json.files | zip(md5_info.results) | list }}'

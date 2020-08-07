@@ -48,6 +48,7 @@
 - name: Unzip the downloaded .csv.gz files
   unarchive:
     src: '{{ item }}'
+    dest: '{{ download_location }}'
     remote_src: yes
     list_files: yes
   loop: '{{ bucket_gz_list }}'

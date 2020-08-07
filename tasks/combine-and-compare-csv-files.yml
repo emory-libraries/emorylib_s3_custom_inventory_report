@@ -15,4 +15,6 @@
   loop: '{{ csv_list }}'
   loop_control:
     loop_var: csv_path
-    
+
+- debug:
+    var: dest_csv | count

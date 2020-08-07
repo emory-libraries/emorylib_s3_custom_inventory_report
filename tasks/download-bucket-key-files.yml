@@ -18,6 +18,9 @@
 - name: Download .csv.gz files for {{ bucket_type }}
   shell: >
     aws s3 cp s3://{{ item.key }} {{ download_location }}/{{ item.key | basename }}
+  vars:
+    location_list: '{{ location_list | d ([]) + location }}'
+    location: '{{ download_location }}/{{ item.key | basename }}'
   loop: '{{ bucket_key.files }}'
   register: test_info
 

@@ -24,7 +24,7 @@
 
 - name: Get bucket key json file
   shell: >
-    aws s3 cp {{ s3.bucket }}/{{ s3.key_prefix | d () | regex_replace(get_trailing_slash, '') }}{{ key_prefix_ternary }}{{ bucket_key }}/{{ report_prefix }}.json
+    aws s3 cp s3://{{ s3.bucket }}/{{ s3.key_prefix | d () | regex_replace(get_trailing_slash, '') }}{{ key_prefix_ternary }}{{ bucket_key }}/{{ report_prefix }}.json
     {{ download_location }}/{{ bucket_type }}.json
   vars:
     get_trailing_slash: \/$

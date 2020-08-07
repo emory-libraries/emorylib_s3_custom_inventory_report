@@ -14,7 +14,13 @@
   vars:
     download_location: '{{ s3_custom_report_download_location }}'
     download: '{{ download_location }}/{{ bucket_type }}.json'
-  
+
+- debug:
+    var: bucket_key
+
+- debug:
+    var: bucket_key.files
+
 - name: Download .csv.gz files for {{ bucket_type }}
   shell: >
     aws s3 cp s3://{{ item.key }} {{ download_location }}/{{ item.key | basename }}

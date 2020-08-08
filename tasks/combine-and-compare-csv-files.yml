@@ -34,11 +34,7 @@
   template:
     src: template_csv.j2
     dest: '{{ download_location }}/{{ ansible_date_time.epoch }}.csv'
-    
+  register: template_info
+
 - debug:
-    var: source_csv | count
-- debug:
-    var: dest_csv | count
-- name:
-  debug:
-    var: difference | count
+    var: template_info

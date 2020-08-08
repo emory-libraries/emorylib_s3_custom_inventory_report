@@ -26,15 +26,14 @@
   loop_control:
     loop_var: csv_path
 
-- debug:
-    var: source_csv | count
-- debug:
-    var: dest_csv | count
-    
 - name: Get difference between source and dest keys
   set_fact:
     difference: '{{ source_csv | difference(dest_csv) }}'
 
+- debug:
+    var: source_csv | count
+- debug:
+    var: dest_csv | count
 - name:
   debug:
     var: difference | count

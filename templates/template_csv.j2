@@ -1,2 +1,2 @@
-{% for object in difference %} "{{ object.Bucket }}","{{ object.Key }}","{{ object.Size }}","{{ object.LastModifiedDate }}","{{ object.ETag }}"
+{% for object in difference %} "{{ s3.bucket }}","{{ object }}"
 {% endfor %}

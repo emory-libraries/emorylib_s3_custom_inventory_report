@@ -6,14 +6,6 @@
     quiet: yes
     fail_msg: The file schema must match on both source and destination buckets
 
-- debug:
-    var: source_inventory_json.fileSchema
-
-- debug:
-    var: source_inventory_json.fileSchema | regex_replace(" ", "")
-
-- fail:
-
 - name: Include tasks to read csv for dest bucket
   include_tasks:
     file: read-csv-file.yml

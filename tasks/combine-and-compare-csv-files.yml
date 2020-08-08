@@ -10,7 +10,7 @@
     var: source_inventory_json.fileSchema
 
 - debug:
-    var: source_inventory_json.fileSchema | map("trim")
+    var: source_inventory_json.fileSchema | regex_replace(" ", "")
 
 - fail:
 

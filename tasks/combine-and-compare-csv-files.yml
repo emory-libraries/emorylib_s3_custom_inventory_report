@@ -6,6 +6,16 @@
     quiet: yes
     fail_msg: The file schema must match on both source and destination buckets
 
+- name: Include tasks to read csv for source bucket
+  include_tasks:
+    file: read-csv-file.yml
+  vars:
+    bucket_type: source
+    csv_list: '{{ source_gz_list | regex_replace (".csv.gz", ".csv") }}'
+  loop: '{{ csv_list }}'
+  loop_control:
+    loop_var: csv_path
+
 - name: Include tasks to read csv for dest bucket
   include_tasks:
     file: read-csv-file.yml
@@ -15,6 +25,3 @@
   loop: '{{ csv_list }}'
   loop_control:
     loop_var: csv_path
-
-- debug:
-    var: dest_csv | count

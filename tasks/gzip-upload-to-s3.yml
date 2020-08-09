@@ -1,9 +1,17 @@
 ---
-- name: Gzip the csv file
+- name: Gzip csv file(s)
   archive:
-    dest:  '{{ download_location }}/{{ ansible_date_time.epoch }}.gz.csv'
-    path: '{{ download_location }}/{{ ansible_date_time.epoch }}.csv'
+    dest:  '{{ item | regex_replace(".csv", ".gz.csv") }}'
+    path: '{{ item }}'
+  loop: '{{ created_csvs }}'
   register: gzip_info
 
 - debug:
     var: gzip_info
+
+- name: Set fact for created gz.csvs
+  set_fact:
+    created_gz_csvs: '{{ gzip.info.results | map (attribute="dest") | list }}'
+
+- debug:
+    var: created_gz_csvs

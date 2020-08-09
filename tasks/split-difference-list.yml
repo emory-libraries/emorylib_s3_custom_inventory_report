@@ -25,12 +25,6 @@
   loop: '{{ lookup("varnames", "split_list_").split(",") }}'
   register: template_info
 
-- debug:
-    var: template_info.results
-
 - name: Set fact for list of csvs created
   set_fact:
     created_csvs: '{{ template_info.results | map (attribute="dest") | list }}'
-
-- debug:
-    var: created_csvs

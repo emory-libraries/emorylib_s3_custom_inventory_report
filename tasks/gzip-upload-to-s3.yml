@@ -19,3 +19,11 @@
 
 - debug:
     var: gz_csv_info
+
+- name: Create new variable with stat info on gz.csv
+  set_fact:
+    gz_csv_stats: '{{ gz_csv_stats | d ([]) + [{"md5": item.stat.checksum, "size": item.stat.size, "local_path": item.stat.path}] }}'
+  loop: '{{ gz_csv_info.results }}'
+
+- debug:
+    var: gz_csv_stats

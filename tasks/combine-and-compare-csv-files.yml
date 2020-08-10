@@ -32,4 +32,4 @@
 
 - name: Set fact for number of difference keys
   set_fact:
-    difference_count: '{{ difference | count | int }}'
+    difference_count: '{{ difference | count }}'

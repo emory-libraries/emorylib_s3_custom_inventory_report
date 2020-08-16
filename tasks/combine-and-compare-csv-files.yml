@@ -33,7 +33,7 @@
 #   when: s3_custom_report_source_bucket is not defined
 
 - debug:
-    var: source_csv | first
+    var: (source_csv | first).value
 
 - pause:
 

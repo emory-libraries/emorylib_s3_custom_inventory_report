@@ -34,6 +34,7 @@
 
 - debug:
     var: (source_csv | first).value
+  debugger: always
 
 - pause:
 

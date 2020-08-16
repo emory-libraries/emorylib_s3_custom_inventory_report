@@ -27,11 +27,15 @@
     loop_var: csv_path
 
 - debug:
-    var: source_csv[0]
-    
+    msg: '{{ (source_csv | first).Bucket }}'
+  ignore_errors: yes
+  
+- debug:
+    var: source_csv.Bucket
+
 - name: Set fact for the source bucket which contains the files to be copied
   set_fact:
-    s3_custom_report_source_bucket: '{{ source_csv[0].Bucket }}'
+    s3_custom_report_source_bucket: '{{ source_csv.Bucket }}'
   when: s3_custom_report_source_bucket is not defined
 
 - pause:

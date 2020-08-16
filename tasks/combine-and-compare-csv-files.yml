@@ -38,9 +38,3 @@
 - name: Set fact for number of difference keys
   set_fact:
     difference_count: '{{ difference | count }}'
-
-- name: Test out dict2items after difference
-  debug:
-    var: difference | dict2items
-
-- pause:

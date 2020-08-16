@@ -28,12 +28,12 @@
 
 - name: Set fact for the source bucket which contains the files to be copied
   set_fact:
-    s3_custom_report_source_bucket: '{{ item.Bucket }}'
+    s3_custom_report_source_bucket: '{{ item.value.Bucket }}'
   loop: '{{ source_csv }}'
   when: s3_custom_report_source_bucket is not defined
 
 - debug:
-    var: s3_custom_report_source_bucket.Bucket
+    var: s3_custom_report_source_bucket.value.Size
 
 - pause:
 

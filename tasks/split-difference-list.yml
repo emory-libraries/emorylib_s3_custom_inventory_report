@@ -7,7 +7,7 @@
 - name: Debug out number of loops needed for splitting difference variable
   debug:
     msg: '{{ item }}'
-  with_sequence: start=1 end='{{ calculate_loop | d (2) }}'
+  with_sequence: start=1 end='{{ calculate_loop | d (1) | int }}'
   register: loop_info
 
 - name: Include tasks for difference splitting loop

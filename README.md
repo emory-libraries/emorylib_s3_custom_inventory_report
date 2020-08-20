@@ -35,8 +35,8 @@ s3_custom_report:
 
 # Other variables
 s3_custom_report_download_location: /tmp    # Working directory where the .csv files are downloaded and manipulated
-s3_custom_report_max_csv_size: 45000        # Controls how many rows the .csv files are allowed to have before being split into another file
-#s3_custom_report_source_bucket:            # Optional variable, use this to manually set the source bucket incase the logic is having trouble, 
+s3_custom_report_max_csv_size: 45_000        # Controls how many rows the .csv files are allowed to have before being split into another file
+#s3_custom_report_source_bucket:            # Optional variable, use this to manually set the source bucket incase the logic is having trouble,
                                             # This should generally be left commented out
 ```
 
@@ -49,11 +49,22 @@ If done correctly this will ensure a nightly backup of the source bucket to dest
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+# Example with an exact date
+s3_custom_report:
+  source:
+    bucket: inventory-reports
+    key_prefix: og-bucket/inventory-report
+    date: '2020-02-26T00-00Z'  # Exact dates must be in quotes!
+  dest:
+    bucket: inventory-reports
+    key_prefix: backup-bucket/inventory-report
+    date: latest
+  report:
+    bucket: inventory-reports
+    key_prefix: og-bucket-to-backup-bucket/inventory-report   # 'inventory-report' is the inventory name we gave S3 for this example, the key could be different or absent entirely.
+s3_custom_report_max_csv_size: 100_000                  # For larger csv files
+```
 
 License
 -------
